@@ -1,8 +1,11 @@
+import urllib
 from urllib.request import urlopen
 import requests
 import bs4
 import os
 cwd = os.getcwd()
+
+# headers = {'User-Agent': 'CoolBot/0.0 (https://example.org/coolbot/; coolbot@example.org)'}
 
 def parse_page(url):
     response = requests.get(url)
@@ -18,21 +21,19 @@ def get_image_url(soup):
     return image_url
 
 
-def download_and_save_image(image_url, img_name, cwd):
-    response = requests.get(f"{image_url}", stream=True,  verify=False, allow_redirects=True)
-    file = open(f'{cwd}\\img\\{img_name}.png', 'wb')
-    file.write(response.content)
-    file.close()
+# def download_and_save_image(image_url, img_name, cwd):
+#     response = requests.get(f"{image_url}",stream=True)
+#     file = open(f'{cwd}\\img\\{img_name}.png', 'wb')
+#     file.write(response.content)
+#     file.close()
 
 def download_and_save_image1(image_url, img_name, cwd):
-    response = requests.get(f"{image_url}", stream=True,  verify=False, allow_redirects=True)
+    response = urlopen(f"{image_url}")
     file = open(f'{cwd}\\img\\{img_name}.png', 'wb')
-    file.write(response.content)
+    file.write(response.read())
     file.close()
 
-response = urlopen("https://www.example.com")
-body = response.read()
->>> response.close()
+
 #test the functions
 if __name__ == '__main__':
 
@@ -40,4 +41,4 @@ if __name__ == '__main__':
 
     image_url = get_image_url(html_soup)
 
-    download_and_save_image(image_url, "Zimbabwe", cwd)
+    download_and_save_image1(image_url, "Zimbabwe", cwd)
