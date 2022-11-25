@@ -16,6 +16,10 @@ dependencies:
   - matplotlib
   - seaborn
 
+  - opencv-python
+  - scikit-build
+  - urllib3
+
 
 
 
