@@ -5,8 +5,6 @@ import bs4
 import os
 cwd = os.getcwd()
 
-# headers = {'User-Agent': 'CoolBot/0.0 (https://example.org/coolbot/; coolbot@example.org)'}
-
 def parse_page(url):
     response = requests.get(url)
     text = response.text
